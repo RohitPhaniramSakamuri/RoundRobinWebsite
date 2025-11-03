@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Round Robin CPU Scheduling Simulator</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Round Robin CPU Scheduling Simulator</h1>
+            <p class="description">Interactive visualization of the Round Robin CPU scheduling algorithm. Add processes, set parameters, and observe the algorithm in action.</p>
+        </header>
+        
+        <div class="main-content">
+            <div class="control-panel">
+                <div class="input-group">
+                    <h2>Algorithm Parameters</h2>
+                    <label for="time-quantum">Time Quantum</label>
+                    <input type="number" id="time-quantum" min="1" value="3">
+                    
+                    <label for="animation-speed">Animation Speed</label>
+                    <select id="animation-speed">
+                        <option value="2000">Slow</option>
+                        <option value="1000" selected>Medium</option>
+                        <option value="500">Fast</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <h2>Process Management</h2>
+                    <div class="process-input-header">
+                        <div>Process ID</div>
+                        <div>Arrival Time</div>
+                        <div>Burst Time</div>
+                    </div>
+                    <div class="process-input">
+                        <input type="text" id="process-id" placeholder="P1">
+                        <input type="number" id="arrival-time" min="0" value="0">
+                        <input type="number" id="burst-time" min="1" value="5">
+                    </div>
+                    <button id="add-process">Add Process</button>
+                    
+                    <div class="process-list" id="process-list">
+                        <!-- Process items will be added here -->
+                    </div>
+                    
+                    <button id="clear-processes">Clear All Processes</button>
+                </div>
+                
+                <div class="input-group">
+                    <button id="start-simulation">Start Simulation</button>
+                    <button id="reset-simulation">Reset Simulation</button>
+                </div>
+                
+                <div class="color-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #3498db;"></div>
+                        <span>Ready</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #2ecc71;"></div>
+                        <span>Running</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #e74c3c;"></div>
+                        <span>Terminated</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #f39c12;"></div>
+                        <span>Waiting</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="animation-container">
+                <div class="animation-canvas" id="animation-canvas">
+                    <!-- Animation will be drawn here -->
+                </div>
+                
+                <div class="controls">
+                    <button id="play-pause">Play</button>
+                    <button id="step-forward">Step Forward</button>
+                    <button id="step-backward">Step Backward</button>
+                </div>
+                
+                <div class="timeline-container">
+                    <div class="timeline" id="timeline">
+                        <!-- Timeline markers will be added here -->
+                    </div>
+                    <div class="timeline-controls">
+                        <span id="current-time">Time: 0</span>
+                        <input type="range" id="timeline-slider" class="timeline-slider" min="0" max="100" value="0">
+                        <span id="total-time">Total: 0</span>
+                    </div>
+                </div>
+                
+                <div class="stats-panel">
+                    <div class="stat-card">
+                        <div class="stat-value" id="avg-waiting-time">0</div>
+                        <div class="stat-label">Average Waiting Time</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="avg-turnaround-time">0</div>
+                        <div class="stat-label">Average Turnaround Time</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="throughput">0</div>
+                        <div class="stat-label">Throughput</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="cpu-utilization">0%</div>
+                        <div class="stat-label">CPU Utilization</div>
+                    </div>
+                </div>
+                
+                <div class="export-options">
+                    <button id="screenshot">Take Screenshot</button>
+                    <button id="export-trace">Export Execution Trace</button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Rohit Phaniram Sakamuri 23BDS0051</p>
+        </footer>
+    </div>
+
+    <!-- Load scripts in order -->
+    <script src="js/Process.js"></script>
+    <script src="js/RoundRobinScheduler.js"></script>
+    <script src="js/AnimationController.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
